@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drawing App</title>
+</head>
+<body>
+<h1 style="font-size: 50px">Drawing App</h1>
+<canvas id="myCanvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+<br><input id="color" placeholder="Color">
+<input id="width" placeholder="Line Width">
+<script>
+var paint=false;
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+c.addEventListener("mousemove",()=>{
+ctx.strokeStyle = document.getElementById("color").value;
+ctx.lineWidth = document.getElementById("width").value;
+if(!paint){return;}
+ctx.beginPath();
+ctx.arc(event.clientX, event.clientY-135, 10, 0, 2 * Math.PI);
+ctx.stroke();
+});
+c.addEventListener("mousedown",()=>{paint=true;});
+c.addEventListener("mouseup",()=>{paint=false});
+function clear(){
+clearRect(0, 0, 700, 700);
+}
+</script>
+</body>
+</html>
